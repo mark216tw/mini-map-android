@@ -1,0 +1,10 @@
+<resources>
+    <style name="Theme.MiniMap" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#E8F5EF</item>
+        <item name="android:windowBackground">#E8F5EF</item>
+        <item name="android:navigationBarColor">#E8F5EF</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+    </style>
+</resources>

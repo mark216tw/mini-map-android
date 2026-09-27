@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.MiniMap" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#E8F5EF</item>
+        <item name="android:windowBackground">#E8F5EF</item>
+        <!-- API 26 cannot use dark navigation icons: retain a dark bar for contrast. -->
+        <item name="android:navigationBarColor">#16445C</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>
