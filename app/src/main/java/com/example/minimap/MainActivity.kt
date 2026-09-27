@@ -127,6 +127,7 @@ private fun MiniMapScreen(dao: PlaceDao) {
     var results by remember { mutableStateOf<List<SearchResult>>(emptyList()) }
     var searchPin by remember { mutableStateOf<SearchResult?>(null) }
     var location by remember { mutableStateOf<GeoPoint?>(null) }
+    var zoomInOnNextLocate by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<Place?>(null) }
     var previewing by remember { mutableStateOf<Place?>(null) }
     var showPlaces by remember { mutableStateOf(false) }
@@ -164,8 +165,8 @@ private fun MiniMapScreen(dao: PlaceDao) {
             .putLong("map_zoom", map.zoomLevelDouble.toBits())
             .apply()
     }
-    fun goTo(lat: Double, lon: Double) {
-        map.controller.setZoom(16.0)
+    fun goTo(lat: Double, lon: Double, zoom: Double = 19.0) {
+        map.controller.setZoom(zoom)
         map.controller.animateTo(GeoPoint(lat, lon))
     }
     fun addSearchResult(result: SearchResult) {
@@ -198,6 +199,12 @@ private fun MiniMapScreen(dao: PlaceDao) {
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
             ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
         ) return
+        val lastFix = location
+        if (zoomInOnNextLocate && lastFix != null) {
+            goTo(lastFix.latitude, lastFix.longitude, zoom = 18.0)
+            zoomInOnNextLocate = false
+            return
+        }
         scope.launch {
             busy = true
             try {
@@ -205,7 +212,8 @@ private fun MiniMapScreen(dao: PlaceDao) {
                 if (fix == null) message("無法取得位置，請確認已開啟定位")
                 else {
                     location = GeoPoint(fix.latitude, fix.longitude)
-                    goTo(fix.latitude, fix.longitude)
+                    goTo(fix.latitude, fix.longitude, zoom = 17.0)
+                    zoomInOnNextLocate = true
                 }
             } catch (_: SecurityException) {
                 message("請允許定位權限")
