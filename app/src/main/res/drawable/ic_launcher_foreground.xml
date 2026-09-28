@@ -1,14 +1,15 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp" android:height="108dp"
     android:viewportWidth="108" android:viewportHeight="108">
-    <!-- Slight visual offset right and down; artwork stays within the 66dp safe area. -->
-    <group android:pivotX="54" android:pivotY="54"
-        android:scaleX="1.02" android:scaleY="0.96"
-        android:translateX="0" android:translateY="1.5">
-        <path android:fillColor="#FFD45A" android:strokeColor="#16445C"
-            android:strokeWidth="4.5" android:strokeLineJoin="round"
-            android:pathData="M30,28 Q29,26 33,27 L79,40 Q83,41 79,44 L60,54 L51,79 Q50,83 47,79 L29,31 Z" />
-        <path android:fillColor="#FFF9E8"
-            android:pathData="M37,35 L69,43 L55,49 L49,68 Z" />
+    <!-- Match the personal landmark pin, centered with a 59.5dp tall silhouette in the 66dp safe area. -->
+    <group android:pivotX="20" android:pivotY="26"
+        android:scaleX="1.24" android:scaleY="1.24"
+        android:translateX="34" android:translateY="28">
+        <path android:fillColor="#173248"
+            android:pathData="M20,2 C9.5,2 2,10 2,20 C2,33 20,50 20,50 C20,50 38,33 38,20 C38,10 30.5,2 20,2 Z" />
+        <path android:fillColor="#FF5A4F"
+            android:pathData="M20,5 C11,5 5,11 5,20 C5,30 20,45 20,45 C20,45 35,30 35,20 C35,11 29,5 20,5 Z" />
+        <path android:fillColor="#FFFFFF"
+            android:pathData="M20,13 a7,7 0,1 0,0 14 a7,7 0,1 0,0 -14" />
     </group>
 </vector>
